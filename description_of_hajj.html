@@ -95,15 +95,20 @@
         .marker-title::after {
             content: '';
             position: absolute;
-            left: 0;
-            bottom: 2px;
-            width: 100%;
-            height: 12px;
+            left: -5px;
+            /* Extend slightly left */
+            right: -5px;
+            /* Extend slightly right */
+            bottom: 8px;
+            /* Lift up slightly */
+            height: 0.5em;
+            /* Scale with font size */
             background: rgba(251, 207, 232, 0.6);
             /* Pinkish highlight */
             z-index: -1;
-            transform: skewX(-15deg) rotate(-1deg);
-            border-radius: 20px;
+            transform: skewX(-10deg) rotate(-1deg);
+            border-radius: 4px;
+            /* Softer edges */
         }
 
         .marker-title-blue::after {
@@ -114,6 +119,11 @@
         .marker-title-green::after {
             background: rgba(187, 247, 208, 0.6);
             /* Greenish highlight */
+        }
+
+        .marker-title-yellow::after {
+            background: rgba(253, 230, 138, 0.6);
+            /* Yellowish highlight */
         }
 
         .highlighter.is-visible,
@@ -256,7 +266,7 @@
                 class="absolute -top-6 left-1/2 transform -translate-x-1/2 w-32 h-8 bg-yellow-200 opacity-80 rotate-1 tape z-10">
             </div>
 
-            <h1 id="main-title" class="handwritten-title text-4xl md:text-5xl text-center mb-2 pt-4">Complete Guide to
+            <h1 id="main-title" class="handwritten-title text-4xl md:text-5xl text-center mb-2 pt-4">Description of
                 Hajj</h1>
             <p id="subtitle" class="text-center text-xl text-gray-600">~ Based on Sunnah ~</p>
 
@@ -324,7 +334,7 @@
                         class="absolute -left-3.5 top-1 bg-white p-1 border-2 border-gray-600 rounded-full doodle-float">
                         <span class="text-xl">⚪</span>
                     </div>
-                    <h3 class="text-2xl font-bold">Step 1: Ihram</h3>
+                    <h3 class="text-2xl font-bold marker-title marker-title-yellow">Step 1: Ihram</h3>
                     <ul class="list-disc ml-4 text-base space-y-1">
                         <li><strong>Prep:</strong> Ghusl, Perfume (body only), Pray.</li>
                         <li><strong>Say Intention:</strong>
@@ -350,7 +360,7 @@
                         style="animation-delay: 0.2s;">
                         <span class="text-xl">🕌</span>
                     </div>
-                    <h3 class="text-2xl font-bold">Step 2: Entering Makkah</h3>
+                    <h3 class="text-2xl font-bold marker-title marker-title-blue">Step 2: Entering Makkah</h3>
                     <p class="text-sm">Ghusl before entering (Sunnah). Enter Masjid right foot first.</p>
                     <p class="italic text-sm text-gray-600 mt-1">"Allahumma ighfir li dhunubi waftah li abwab
                         rahmatika..."</p>
@@ -374,7 +384,7 @@
                         style="animation-delay: 0.4s;">
                         <span class="text-xl">⛺</span>
                     </div>
-                    <h3 class="text-2xl font-bold"><span class="highlighter-green">8th Dhul-Hijjah (Tarwiyah)</span>
+                    <h3 class="text-2xl font-bold marker-title marker-title-green">8th Dhul-Hijjah (Tarwiyah)
                     </h3>
                     <p><strong>Action:</strong> Enter Hajj Ihram from Makkah ("Labbayk Allahumma Hajjan").</p>
                     <p><strong>Move to Mina:</strong> Pray Zuhr, Asr, Maghrib, Isha, Fajr.</p>
@@ -387,7 +397,7 @@
                         style="animation-delay: 0.6s;">
                         <span class="text-xl">☀️</span>
                     </div>
-                    <h3 class="text-2xl font-bold"><span class="highlighter">9th: Arafah (The Great Day)</span></h3>
+                    <h3 class="text-2xl font-bold marker-title marker-title-yellow">9th: Arafah (The Great Day)</h3>
                     <ul class="list-disc ml-4 text-sm space-y-2">
                         <li><strong>Morning:</strong> Go to Namirah (Sunnah) till noon.</li>
                         <li><strong>Prayer:</strong> At Zuhr time, pray Zuhr & Asr <span class="underline">combined and
@@ -407,7 +417,7 @@
                         style="animation-delay: 0.8s;">
                         <span class="text-xl">🌌</span>
                     </div>
-                    <h3 class="text-2xl font-bold">Night of 9th: Muzdalifah</h3>
+                    <h3 class="text-2xl font-bold marker-title">Night of 9th: Muzdalifah</h3>
                     <p class="text-sm">Leave Arafah after sunset.</p>
                     <ul class="list-disc ml-4 text-sm">
                         <li>Pray Maghrib (3) & Isha (2) combined upon arrival.</li>
@@ -423,7 +433,7 @@
                         style="animation-delay: 0.1s;">
                         <span class="text-xl">🐏</span>
                     </div>
-                    <h3 class="text-2xl font-bold"><span class="highlighter-green">10th: Yawm al-Nahr (Eid)</span></h3>
+                    <h3 class="text-2xl font-bold marker-title marker-title-green">10th: Yawm al-Nahr (Eid)</h3>
                     <p class="text-sm mb-2">Move to Mina via Wadi Mahsar. Order of actions:</p>
                     <ul class="list-none space-y-2 text-lg">
                         <li class="flex items-center gap-2">
@@ -461,7 +471,7 @@
                         style="animation-delay: 0.3s;">
                         <span class="text-xl">🪨</span>
                     </div>
-                    <h3 class="text-2xl font-bold">11th, 12th, (13th): Tashreeq</h3>
+                    <h3 class="text-2xl font-bold marker-title">11th, 12th, (13th): Tashreeq</h3>
                     <p class="text-sm">Stay in Mina. Stone <strong>after Zenith (noon)</strong> each day.</p>
                     <ol class="list-decimal ml-4 text-sm mt-2">
                         <li><strong>Small Jamrah:</strong> 7 pebbles &rarr; Long Dua.</li>
@@ -478,7 +488,7 @@
                         style="animation-delay: 0.5s;">
                         <span class="text-xl">👋</span>
                     </div>
-                    <h3 class="text-2xl font-bold">Farewell Tawaf (Wada')</h3>
+                    <h3 class="text-2xl font-bold marker-title marker-title-blue">Farewell Tawaf (Wada')</h3>
                     <p class="text-sm">The very last action before leaving Makkah.</p>
                     <p class="text-sm text-red-600"><strong>Note:</strong> Menstruating women are exempt and do not need
                         to stand by the door.</p>
