@@ -2,7 +2,7 @@
 
 A beautiful, interactive, and responsive web application designed to be your simple, Sunnah-based guide to Islam. Built with modern web technologies, it features a handwritten "paper" aesthetic to make learning feel personal and engaging.
 
-![Project Preview](https://via.placeholder.com/800x400?text=Islamic+Handbook+Preview)
+![Project Preview](https://learndeen.github.io/)
 
 ## 🌟 Features
 
