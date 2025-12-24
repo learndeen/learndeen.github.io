@@ -15,7 +15,7 @@ const DoodleCard = ({ topic }) => {
 
 export default function Home() {
     return (
-        <div className="max-w-6xl mx-auto paper-sheet px-8 md:px-16 pb-12">
+        <div className="w-full max-w-[98%] xl:max-w-[1800px] mx-auto paper-sheet px-8 md:px-16 pb-12">
             {/* Header */}
             <div className="mb-12 pl-6 relative pt-4 text-center">
                 <h1 className="handwritten-title text-4xl md:text-6xl mb-4">Islamic Handbook</h1>
@@ -23,7 +23,7 @@ export default function Home() {
             </div>
 
             {/* Grid */}
-            <div className="pl-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="pl-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {topics.map((topic) => (
                     <DoodleCard key={topic.id} topic={topic} />
                 ))}

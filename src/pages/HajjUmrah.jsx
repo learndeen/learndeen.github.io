@@ -10,14 +10,14 @@ const SubTopicCard = ({ to, title, icon, desc, color, rot }) => (
 
 export default function HajjUmrah() {
     return (
-        <div className="max-w-4xl mx-auto paper-sheet px-8 md:px-16 pb-12">
+        <div className="w-full max-w-[98%] xl:max-w-[1800px] mx-auto paper-sheet px-8 md:px-16 pb-12">
             <div className="mb-12 pl-6 relative pt-4 text-center">
                 <Link to="/" className="inline-block mb-4 text-gray-600 hover:text-blue-600 font-bold decoration-none">← Back to Home</Link>
                 <h1 className="handwritten-title text-4xl md:text-6xl mb-4">7️⃣ Hajj & Umrah</h1>
                 <p className="text-xl text-gray-600">Complete guide to the Pilgrimage.</p>
             </div>
 
-            <div className="pl-6 grid md:grid-cols-2 gap-8">
+            <div className="pl-6 grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
                 <SubTopicCard
                     to="/hajj-umrah/description"
                     title="Step-by-step Hajj"

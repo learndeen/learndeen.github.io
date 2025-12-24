@@ -4,17 +4,60 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  /* Light Theme (Default) */
+  --bg-body: #f0f4f8;
+  --text-main: #2d3748;
+  --text-muted: #718096;
+  --paper-bg: #ffffff;
+  --paper-line: #e1e1e1;
+  --paper-margin: #fca5a5;
+  --doodle-border: #4a5568;
+  --doodle-bg: #ffffff;
+}
+
+[data-theme='dark'] {
+  --bg-body: #0f172a;
+  /* Slate 900 - Deep background */
+  --text-main: #f8fafc;
+  /* Slate 50 - Bright text */
+  --text-muted: #cbd5e1;
+  /* Slate 300 - Readable muted text */
+  --paper-bg: #1e293b;
+  /* Slate 800 - The Paper */
+  --paper-line: #334155;
+  /* Slate 700 - The Lines */
+  --paper-margin: #b91c1c;
+  /* Red 700 - Margin line */
+  --doodle-border: #475569;
+  /* Slate 600 */
+  --doodle-bg: #334155;
+  /* Slate 700 - Cards (Lighter than paper) */
+}
+
+[data-theme='sepia'] {
+  --bg-body: #f5e6d3;
+  --text-main: #4a3b2a;
+  --text-muted: #8c735a;
+  --paper-bg: #fdf6e3;
+  --paper-line: #e0d0b8;
+  --paper-margin: #dcb2b2;
+  --doodle-border: #8c735a;
+  --doodle-bg: #fffbf0;
+}
+
 body {
-  background-color: #f0f4f8;
+  background-color: var(--bg-body);
   font-family: 'Patrick Hand', cursive;
-  color: #2d3748;
+  color: var(--text-main);
   overflow-x: hidden;
   margin: 0;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .paper-sheet {
-  background-color: #fff;
-  background-image: linear-gradient(#e1e1e1 1px, transparent 1px);
+  background-color: var(--paper-bg);
+  background-image: linear-gradient(var(--paper-line) 1px, transparent 1px);
   background-size: 100% 1.5rem;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
   position: relative;
@@ -22,6 +65,14 @@ body {
   padding-top: 3rem;
   background-blend-mode: multiply;
   min-height: 800px;
+  transition: background-color 0.3s, background-image 0.3s, box-shadow 0.3s;
+}
+
+/* Dark mode paper shadow adjustment */
+[data-theme='dark'] .paper-sheet {
+  box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+  background-blend-mode: normal;
+  /* Multiply doesn't look good on dark */
 }
 
 .paper-sheet::before {
@@ -31,8 +82,9 @@ body {
   bottom: 0;
   left: 3rem;
   width: 2px;
-  background-color: #fca5a5;
+  background-color: var(--paper-margin);
   z-index: 10;
+  transition: background-color 0.3s;
 }
 
 @media (max-width: 768px) {
@@ -43,15 +95,15 @@ body {
 
 .handwritten-title {
   font-family: 'Gloria Hallelujah', cursive;
-  color: #1a202c;
+  color: var(--text-main);
 }
 
 /* Doodle Box Styles */
 .doodle-box {
-  border: 2px solid #4a5568;
+  border: 2px solid var(--doodle-border);
   border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
   padding: 1.5rem;
-  background: white;
+  background: var(--doodle-bg);
   position: relative;
   box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.05);
   transition: all 0.3s ease;
@@ -70,6 +122,32 @@ body {
   transform: scale(1.05);
   box-shadow: 5px 8px 15px rgba(0, 0, 0, 0.1);
   z-index: 10;
+}
+
+/* Special handling for text inside doodle boxes to ensure contrast if we keep colored backgrounds */
+/* For now, we override the colored backgrounds in Dark mode to prevent clashes, 
+   OR we can define them as variables if needed. 
+   Let's mute them in dark mode using filtered brightness. */
+
+/* Dark Mode Card Overrides - Premium Look */
+[data-theme='dark'] .doodle-box {
+  background-color: var(--doodle-bg) !important;
+  border-color: var(--doodle-border);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme='dark'] .doodle-box:hover {
+  background-color: #475569 !important;
+  /* Slate 600 on hover */
+  border-color: #94a3b8;
+  /* Slate 400 */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+  /* Deep shadow */
+  transform: scale(1.05) translateY(-2px);
+}
+
+[data-theme='sepia'] .doodle-box {
+  /* Let the inline classes work or override if needed */
 }
 
 /* Utilities for rotations */
@@ -94,4 +172,14 @@ body {
 .rotate-2:hover,
 .-rotate-2:hover {
   transform: scale(1.05) rotate(0deg);
+}
+
+/* Text utils */
+.text-gray-600 {
+  color: var(--text-muted);
+}
+
+.text-gray-400 {
+  color: var(--text-muted);
+  opacity: 0.7;
 }
