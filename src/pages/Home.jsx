@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { topics } from '../data/topics';
+import { getNumberEmoji } from '../utils/textUtils';
 
 const DoodleCard = ({ topic }) => {
     const linkPath = topic.link || `/topic/${topic.slug}`;
@@ -7,7 +8,7 @@ const DoodleCard = ({ topic }) => {
     return (
         <Link to={linkPath} className={`doodle-box ${topic.color} ${topic.rot}`}>
             <span className="text-4xl mb-2">{topic.icon}</span>
-            <h2 className="handwritten-title text-xl font-bold">{topic.id}️⃣ {topic.title}</h2>
+            <h2 className="handwritten-title text-xl font-bold">{getNumberEmoji(topic.id)} {topic.title}</h2>
             <p className="text-sm text-gray-600 mt-2">{topic.desc}</p>
         </Link>
     );
