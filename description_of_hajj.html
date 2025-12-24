@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detailed Description of Hajj</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&family=Patrick+Hand&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            background-color: #f0f4f8;
+            font-family: 'Patrick Hand', cursive;
+            color: #2d3748;
+            overflow-x: hidden;
+        }
+
+        .paper-sheet {
+            background-color: #fff;
+            background-image: linear-gradient(#e1e1e1 1px, transparent 1px);
+            background-size: 100% 1.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            position: relative;
+            line-height: 1.5rem;
+            padding-top: 3rem;
+            /* Texture overlay */
+            background-blend-mode: multiply;
+        }
+
+        .paper-sheet::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 3rem;
+            width: 2px;
+            background-color: #fca5a5;
+            z-index: 10;
+        }
+
+        .handwritten-title {
+            font-family: 'Gloria Hallelujah', cursive;
+            color: #1a202c;
+        }
+
+        /* --- Animations --- */
+
+        /* 1. Scroll Fade Up */
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+
+        .reveal-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 2. Highlighter Animation */
+        .highlighter,
+        .highlighter-green,
+        .highlighter-blue {
+            background-repeat: no-repeat;
+            background-position: 0 90%;
+            /* Lower position */
+            background-size: 0% 50%;
+            /* Taller stroke (50% of font height) */
+            transition: background-size 0.8s ease 0.2s;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+
+        /* Colors for text highlighters */
+        .highlighter {
+            background-image: linear-gradient(120deg, rgba(246, 224, 94, 0.7) 0%, rgba(246, 224, 94, 0.7) 100%);
+        }
+
+        .highlighter-green {
+            background-image: linear-gradient(120deg, rgba(187, 247, 208, 0.7) 0%, rgba(187, 247, 208, 0.7) 100%);
+        }
+
+        .highlighter-blue {
+            background-image: linear-gradient(120deg, rgba(190, 227, 248, 0.7) 0%, rgba(190, 227, 248, 0.7) 100%);
+        }
+
+        /* Marker Underline for Headings */
+        .marker-title {
+            position: relative;
+            display: inline-block;
+            z-index: 1;
+        }
+
+        .marker-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 2px;
+            width: 100%;
+            height: 12px;
+            background: rgba(251, 207, 232, 0.6);
+            /* Pinkish highlight */
+            z-index: -1;
+            transform: skewX(-15deg) rotate(-1deg);
+            border-radius: 20px;
+        }
+
+        .marker-title-blue::after {
+            background: rgba(191, 219, 254, 0.6);
+            /* Blueish highlight */
+        }
+
+        .marker-title-green::after {
+            background: rgba(187, 247, 208, 0.6);
+            /* Greenish highlight */
+        }
+
+        .highlighter.is-visible,
+        .highlighter-green.is-visible,
+        .highlighter-blue.is-visible {
+            background-size: 100% 50%;
+        }
+
+        /* 3. Doodle Float */
+        @keyframes float {
+            0% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-5px) rotate(2deg);
+            }
+
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+        }
+
+        .doodle-float {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        /* 4. Doodle Box Hover */
+        .doodle-box {
+            border: 2px solid #4a5568;
+            border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+            padding: 1rem;
+            background: white;
+            position: relative;
+            box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .doodle-box:hover {
+            transform: scale(1.02) rotate(-1deg) !important;
+            /* Override inline rotation on hover */
+            box-shadow: 5px 8px 15px rgba(0, 0, 0, 0.1);
+            z-index: 5;
+        }
+
+        /* 5. Tape */
+        .tape {
+            background-color: rgba(255, 255, 255, 0.6);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(2px);
+            transform: rotate(-2deg);
+        }
+
+        /* 6. Checkbox Animation */
+        .sketch-checkbox {
+            appearance: none;
+            width: 1.2em;
+            height: 1.2em;
+            border: 2px solid #4a5568;
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            display: grid;
+            place-content: center;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .sketch-checkbox:active {
+            transform: scale(0.9);
+        }
+
+        .sketch-checkbox::before {
+            content: "";
+            width: 0.65em;
+            height: 0.65em;
+            transform: scale(0);
+            transition: 200ms transform cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            /* Bouncy effect */
+            box-shadow: inset 1em 1em #2b6cb0;
+            transform-origin: center;
+            clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+        }
+
+        .sketch-checkbox:checked::before {
+            transform: scale(1);
+        }
+
+        /* SVG Styles */
+        .ink-stroke {
+            fill: none;
+            stroke: #2d3748;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen p-4 md:p-8">
+
+    <!-- Language Controls -->
+    <div class="fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="setLanguage('en')" class="lang-btn active" id="btn-en">English</button>
+        <button onclick="setLanguage('hi')" class="lang-btn" id="btn-hi">हिन्दी</button>
+        <button onclick="setLanguage('ur')" class="lang-btn" id="btn-ur">اردو</button>
+        <button onclick="setLanguage('bn')" class="lang-btn" id="btn-bn">বাংলা</button>
+    </div>
+
+    <!-- Styles for Lang Controls -->
+    <style>
+        .lang-btn {
+            font-family: sans-serif;
+            font-size: 0.8rem;
+            border: 1px solid #cbd5e0;
+            padding: 4px 8px;
+            border-radius: 4px;
+            background: #fff;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .lang-btn:hover,
+        .lang-btn.active {
+            background: #ebf8ff;
+            border-color: #63b3ed;
+            color: #2b6cb0;
+        }
+    </style>
+
+    <!-- Notebook Container -->
+    <div class="max-w-4xl mx-auto paper-sheet px-8 md:px-16 pb-12 min-h-[1000px]">
+
+        <!-- Header Section -->
+        <div class="mb-8 pl-6 relative reveal-on-scroll">
+            <a href="index.html" id="back-link"
+                class="inline-block mb-4 text-blue-600 hover:text-blue-800 transition-colors duration-200 doodle-box text-lg">
+                ← Back to Guide
+            </a>
+            <!-- Washi Tape -->
+            <div
+                class="absolute -top-6 left-1/2 transform -translate-x-1/2 w-32 h-8 bg-yellow-200 opacity-80 rotate-1 tape z-10">
+            </div>
+
+            <h1 id="main-title" class="handwritten-title text-4xl md:text-5xl text-center mb-2 pt-4">Complete Guide to
+                Hajj</h1>
+            <p id="subtitle" class="text-center text-xl text-gray-600">~ Based on Sunnah ~</p>
+
+            <!-- Floating Goal Doodle -->
+            <div class="absolute top-2 right-0 hidden md:block opacity-70 doodle-float" style="animation-delay: 0.5s;">
+                <svg width="80" height="80" viewBox="0 0 100 100" class="ink-stroke">
+                    <path d="M20,80 Q50,10 80,80 T20,80" stroke-dasharray="5,5" />
+                    <circle cx="50" cy="50" r="40" class="stroke-gray-400" stroke-width="1" />
+                    <text x="35" y="55" font-family="Patrick Hand" font-size="14" stroke="none" fill="black">Goal</text>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Section 1: Foundations -->
+        <div class="pl-6 mb-8 reveal-on-scroll">
+            <h2 id="header-1" class="handwritten-title text-2xl mb-4 text-blue-800 marker-title marker-title-blue">1.
+                Acceptance Conditions</h2>
+            <p class="mb-2">For any act of worship (Hajj included) to be accepted, it needs:</p>
+            <ul class="list-disc list-inside space-y-1 ml-4 text-lg">
+                <li><span class="highlighter">Sincerity (Ikhlas)</span>: Seeking only Allah's pleasure, not showing off.
+                </li>
+                <li><span class="highlighter">Following Sunnah</span>: Doing it exactly as the Prophet ﷺ did.</li>
+            </ul>
+        </div>
+
+        <!-- Section 2: Types of Hajj -->
+        <div class="pl-6 mb-8 reveal-on-scroll">
+            <h2 id="header-2" class="handwritten-title text-2xl mb-4 text-blue-800 marker-title marker-title-blue">2.
+                The Three
+                Types</h2>
+            <div class="grid md:grid-cols-3 gap-4">
+                <div class="doodle-box bg-yellow-50 transform -rotate-1">
+                    <h3 class="font-bold text-lg">1. Tamattu' (Best) ⭐</h3>
+                    <p class="text-sm leading-tight mt-1">Ihram for Umrah in Hajj months. Do Umrah &rarr; Exit Ihram
+                        &rarr; Enter Hajj Ihram on 8th Dhul-Hijjah.</p>
+                    <p class="text-xs text-red-600 mt-2 font-bold">*Requires Sacrifice (Hadiy)</p>
+                </div>
+                <div class="doodle-box transform rotate-1">
+                    <h3 class="font-bold text-lg">2. Qiran</h3>
+                    <p class="text-sm leading-tight mt-1">Ihram for Umrah & Hajj together. Do not exit Ihram until Eid
+                        day.</p>
+                    <p class="text-xs text-red-600 mt-2 font-bold">*Requires Sacrifice (Hadiy)</p>
+                </div>
+                <div class="doodle-box transform -rotate-1">
+                    <h3 class="font-bold text-lg">3. Ifrad</h3>
+                    <p class="text-sm leading-tight mt-1">Ihram for Hajj only. Remain in Ihram until Eid.</p>
+                    <p class="text-xs text-green-600 mt-2 font-bold">*No Sacrifice needed</p>
+                </div>
+            </div>
+            <p class="mt-4 text-sm text-gray-600 pl-2"><em>Note: If doing Qiran/Ifrad but don't have a sacrifice animal,
+                    change intention to Umrah (make it Tamattu').</em></p>
+        </div>
+
+        <!-- Section 3: Ihram & Arrival -->
+        <div class="pl-6 mb-10">
+            <h2 id="header-3"
+                class="handwritten-title text-3xl mb-6 text-gray-800 inline-block reveal-on-scroll marker-title">3. The
+                Sacred Journey</h2>
+
+            <div class="relative border-l-4 border-dashed border-gray-400 ml-4 space-y-12 py-2">
+
+                <!-- Step 1: Ihram -->
+                <div class="relative pl-8 reveal-on-scroll">
+                    <div
+                        class="absolute -left-3.5 top-1 bg-white p-1 border-2 border-gray-600 rounded-full doodle-float">
+                        <span class="text-xl">⚪</span>
+                    </div>
+                    <h3 class="text-2xl font-bold">Step 1: Ihram</h3>
+                    <ul class="list-disc ml-4 text-base space-y-1">
+                        <li><strong>Prep:</strong> Ghusl, Perfume (body only), Pray.</li>
+                        <li><strong>Say Intention:</strong>
+                            <ul class="list-none ml-4 text-sm text-gray-600 italic">
+                                <li>Tamattu': "Labbayk Allahumma bi 'Umrah"</li>
+                                <li>Qiran: "Labbayk Allahumma bi Hajjah wa 'Umrah"</li>
+                                <li>Ifrad: "Labbayk Allahumma Hajjan"</li>
+                            </ul>
+                        </li>
+                        <li><strong>Condition (if fearing obstacles):</strong> "If I am prevented, then my exiting Ihram
+                            is where I am prevented."</li>
+                        <li><strong>The Talbiyah:</strong> <br>
+                            <span class="highlighter-blue p-1 block mt-1 rounded text-sm">"Labbayka Allahumma labbayk,
+                                labbayka la sharika laka labbayk. Inna al-hamd wa'l-ni'mata laka wa'l-mulk, la sharika
+                                lak"</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Step 2: Entering Makkah -->
+                <div class="relative pl-8 reveal-on-scroll">
+                    <div class="absolute -left-3.5 top-1 bg-white p-1 border-2 border-gray-600 rounded-full doodle-float"
+                        style="animation-delay: 0.2s;">
+                        <span class="text-xl">🕌</span>
+                    </div>
+                    <h3 class="text-2xl font-bold">Step 2: Entering Makkah</h3>
+                    <p class="text-sm">Ghusl before entering (Sunnah). Enter Masjid right foot first.</p>
+                    <p class="italic text-sm text-gray-600 mt-1">"Allahumma ighfir li dhunubi waftah li abwab
+                        rahmatika..."</p>
+
+                    <div class="mt-4 border-l-2 border-blue-300 pl-4">
+                        <h4 class="font-bold text-blue-800">Umrah Rituals (For Tamattu'):</h4>
+                        <ol class="list-decimal ml-4 text-sm">
+                            <li><strong>Tawaf:</strong> 7 circuits around Kaaba.</li>
+                            <li><strong>Sa'i:</strong> 7 times Safa &harr; Marwah.</li>
+                            <li><strong>Shave/Cut:</strong> Men shave (better) or cut entire head. Women cut fingertip
+                                length.</li>
+                            <li><strong>Exit Ihram:</strong> Everything becomes lawful (clothes, perfume, etc) until 8th
+                                Dhul-Hijjah.</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <!-- Step 3: 8th Dhul-Hijjah -->
+                <div class="relative pl-8 reveal-on-scroll">
+                    <div class="absolute -left-3.5 top-1 bg-white p-1 border-2 border-gray-600 rounded-full doodle-float"
+                        style="animation-delay: 0.4s;">
+                        <span class="text-xl">⛺</span>
+                    </div>
+                    <h3 class="text-2xl font-bold"><span class="highlighter-green">8th Dhul-Hijjah (Tarwiyah)</span>
+                    </h3>
+                    <p><strong>Action:</strong> Enter Hajj Ihram from Makkah ("Labbayk Allahumma Hajjan").</p>
+                    <p><strong>Move to Mina:</strong> Pray Zuhr, Asr, Maghrib, Isha, Fajr.</p>
+                    <p class="text-sm text-red-600 font-bold">Rule: Shorten prayers (4->2) but DO NOT combine.</p>
+                </div>
+
+                <!-- Step 4: 9th Dhul-Hijjah (Arafah) -->
+                <div class="relative pl-8 reveal-on-scroll">
+                    <div class="absolute -left-3.5 top-1 bg-white p-1 border-2 border-gray-600 rounded-full doodle-float"
+                        style="animation-delay: 0.6s;">
+                        <span class="text-xl">☀️</span>
+                    </div>
+                    <h3 class="text-2xl font-bold"><span class="highlighter">9th: Arafah (The Great Day)</span></h3>
+                    <ul class="list-disc ml-4 text-sm space-y-2">
+                        <li><strong>Morning:</strong> Go to Namirah (Sunnah) till noon.</li>
+                        <li><strong>Prayer:</strong> At Zuhr time, pray Zuhr & Asr <span class="underline">combined and
+                                shortened</span>.</li>
+                        <li><strong>Wuquf (Standing):</strong> From noon till Sunset. Face Qiblah (not mountain). Make
+                            Dua!</li>
+                        <li><strong>Best Dua:</strong> <br>
+                            <span class="italic text-gray-700">"La ilaha ill-Allah wahdahu la sharika lah, lahu'l-mulk,
+                                wa lahu'l-hamd, wa huwa 'ala kulli shay'in qadir"</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Step 5: Muzdalifah -->
+                <div class="relative pl-8 reveal-on-scroll">
+                    <div class="absolute -left-3.5 top-1 bg-white p-1 border-2 border-gray-600 rounded-full doodle-float"
+                        style="animation-delay: 0.8s;">
+                        <span class="text-xl">🌌</span>
+                    </div>
+                    <h3 class="text-2xl font-bold">Night of 9th: Muzdalifah</h3>
+                    <p class="text-sm">Leave Arafah after sunset.</p>
+                    <ul class="list-disc ml-4 text-sm">
+                        <li>Pray Maghrib (3) & Isha (2) combined upon arrival.</li>
+                        <li>Sleep/Rest.</li>
+                        <li>Pray Fajr early.</li>
+                        <li>Stand at Al-Mash'ar Al-Haram making Dua until "very light" (before sunrise).</li>
+                    </ul>
+                </div>
+
+                <!-- Step 6: 10th Dhul-Hijjah (Eid) -->
+                <div class="relative pl-8 reveal-on-scroll">
+                    <div class="absolute -left-3.5 top-1 bg-white p-1 border-2 border-gray-600 rounded-full doodle-float"
+                        style="animation-delay: 0.1s;">
+                        <span class="text-xl">🐏</span>
+                    </div>
+                    <h3 class="text-2xl font-bold"><span class="highlighter-green">10th: Yawm al-Nahr (Eid)</span></h3>
+                    <p class="text-sm mb-2">Move to Mina via Wadi Mahsar. Order of actions:</p>
+                    <ul class="list-none space-y-2 text-lg">
+                        <li class="flex items-center gap-2">
+                            <input type="checkbox" class="sketch-checkbox">
+                            <span>1. Stone <strong>Jamrat al-Aqabah</strong> (7 pebbles). Say "Allahu Akbar". Stop
+                                Talbiyah.</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <input type="checkbox" class="sketch-checkbox">
+                            <span>2. Slaughter Sacrifice (Hadiy).</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <input type="checkbox" class="sketch-checkbox">
+                            <span>3. Shave Head (Men) / Trim (Women).</span>
+                        </li>
+                    </ul>
+                    <div class="bg-blue-50 p-2 my-2 text-sm rounded border border-blue-200">
+                        <strong>First Tahallul:</strong> Everything allowed except marital relations. Perfume is Sunnah
+                        now!
+                    </div>
+                    <ul class="list-none space-y-2 text-lg">
+                        <li class="flex items-center gap-2">
+                            <input type="checkbox" class="sketch-checkbox">
+                            <span>4. Go to Makkah: Tawaf al-Ifadah & Sa'i.</span>
+                        </li>
+                    </ul>
+                    <div class="bg-green-50 p-2 my-2 text-sm rounded border border-green-200">
+                        <strong>Second Tahallul:</strong> Everything is now lawful.
+                    </div>
+                </div>
+
+                <!-- Step 7: Tashreeq -->
+                <div class="relative pl-8 reveal-on-scroll">
+                    <div class="absolute -left-3.5 top-1 bg-white p-1 border-2 border-gray-600 rounded-full doodle-float"
+                        style="animation-delay: 0.3s;">
+                        <span class="text-xl">🪨</span>
+                    </div>
+                    <h3 class="text-2xl font-bold">11th, 12th, (13th): Tashreeq</h3>
+                    <p class="text-sm">Stay in Mina. Stone <strong>after Zenith (noon)</strong> each day.</p>
+                    <ol class="list-decimal ml-4 text-sm mt-2">
+                        <li><strong>Small Jamrah:</strong> 7 pebbles &rarr; Long Dua.</li>
+                        <li><strong>Middle Jamrah:</strong> 7 pebbles &rarr; Long Dua.</li>
+                        <li><strong>Aqabah Jamrah:</strong> 7 pebbles &rarr; NO Dua.</li>
+                    </ol>
+                    <p class="text-xs text-gray-500 mt-2">Can leave on 12th if departed before sunset. Otherwise, stay
+                        for 13th.</p>
+                </div>
+
+                <!-- Step 8: Farewell -->
+                <div class="relative pl-8 reveal-on-scroll">
+                    <div class="absolute -left-3.5 top-1 bg-white p-1 border-2 border-gray-600 rounded-full doodle-float"
+                        style="animation-delay: 0.5s;">
+                        <span class="text-xl">👋</span>
+                    </div>
+                    <h3 class="text-2xl font-bold">Farewell Tawaf (Wada')</h3>
+                    <p class="text-sm">The very last action before leaving Makkah.</p>
+                    <p class="text-sm text-red-600"><strong>Note:</strong> Menstruating women are exempt and do not need
+                        to stand by the door.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 4: Prohibitions -->
+        <div class="pl-6 mt-8 mb-12 reveal-on-scroll">
+            <div class="doodle-box bg-red-50 border-red-200 transform rotate-1">
+                <h3 id="header-4" class="handwritten-title text-2xl mb-4 text-red-800 text-center">🚫 Prohibitions of
+                    Ihram 🚫</h3>
+                <div class="grid grid-cols-2 gap-4 text-sm">
+                    <div>
+                        <h4 class="font-bold underline mb-2">Everyone:</h4>
+                        <ul class="space-y-1 list-disc ml-4">
+                            <li>Cutting hair or nails.</li>
+                            <li>Perfume (body, clothes, soap, food).</li>
+                            <li>Hunting.</li>
+                            <li>Marriage contracts/proposals.</li>
+                            <li>Sexual intercourse/foreplay (invalidates Hajj if before 1st Tahallul).</li>
+                            <li>Wearing gloves.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-bold underline mb-2">Men Only:</h4>
+                        <ul class="space-y-1 list-disc ml-4">
+                            <li>Covering head with attached object (hats/turbans). <span
+                                    class="text-gray-500 text-xs">(Umbrellas/Tents OK)</span></li>
+                            <li>Form-fitting/stitched clothes (Shirts, pants, underwear).</li>
+                            <li>Slippers covering heels (unless no sandals available).</li>
+                        </ul>
+                        <h4 class="font-bold underline mt-4 mb-2">Women Only:</h4>
+                        <ul class="space-y-1 list-disc ml-4">
+                            <li>Niqab or Burqa. <span class="text-gray-500 text-xs">(Must cover face with other cloth if
+                                    men present)</span>.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mt-4 pt-4 border-t border-red-200 text-center text-green-700">
+                    <span class="font-bold">Allowed ✅:</span> Sandals, Rings, Eyeglasses, Hearing aids, Watches
+                    (wrist/neck), Money belts, Scratching/Washing (unscented).
+                </div>
+            </div>
+        </div>
+
+        <!-- General Considerations -->
+        <div class="pl-6 mb-8 reveal-on-scroll">
+            <h2 class="handwritten-title text-xl mb-2 text-gray-700">General Requirements</h2>
+            <ul class="list-disc ml-5 text-sm space-y-1 text-gray-700">
+                <li>Adhere to religious laws (praying on time).</li>
+                <li>Avoid obscene speech and sin (No arguing!).</li>
+                <li>Avoid annoying other Muslims.</li>
+            </ul>
+        </div>
+
+        <!-- Footer -->
+        <div class="mt-12 text-center text-gray-500 pl-6 pb-8 reveal-on-scroll">
+            <p class="handwritten-title text-xl">May Allah accept your Hajj!</p>
+            <div class="flex justify-center mt-4 doodle-float">
+                <svg width="50" height="50" viewBox="0 0 100 100" class="ink-stroke">
+                    <path d="M10,50 Q25,25 50,10 Q75,25 90,50 Q75,75 50,90 Q25,75 10,50 Z" fill="none" />
+                    <path d="M50,10 L50,90 M10,50 L90,50" />
+                </svg>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Script to trigger animations and handle language -->
+    <script>
+        // Translations
+        const content = {
+            'en': {
+                'title-main': "Complete Guide to Hajj",
+                'subtitle': "~ Based on Sunnah ~",
+                'header-1': "1. Acceptance Conditions",
+                'header-2': "2. The Three Types",
+                'header-3': "3. The Sacred Journey",
+                'header-4': "🚫 Prohibitions of Ihram 🚫",
+                'back-btn': "← Back to Guide"
+            },
+            'hi': {
+                'title-main': "हज की पूरी गाइड",
+                'subtitle': "~ सुन्नत के मुताबिक ~",
+                'header-1': "1. कबूलियत की शर्तें",
+                'header-2': "2. हज की तीन किस्में",
+                'header-3': "3. पवित्र सफर",
+                'header-4': "🚫 एहराम की पाबंदियां 🚫",
+                'back-btn': "← वापस गाइड पर"
+            },
+            'ur': {
+                'title-main': "حج کی مکمل گائیڈ",
+                'subtitle': "~ سنت کے مطابق ~",
+                'header-1': "1. قبولیت کی شرائط",
+                'header-2': "2. حج کی تین اقسام",
+                'header-3': "3. مقدس سفر",
+                'header-4': "🚫 احرام کی پابندیاں 🚫",
+                'back-btn': "← واپس گائیڈ پر"
+            },
+            'bn': {
+                'title-main': "হজ্বের সম্পূর্ণ গাইড",
+                'subtitle': "~ সুন্নাহ ভিত্তিক ~",
+                'header-1': "১. কবুল হওয়ার শর্তাবলী",
+                'header-2': "২. হজ্বের তিন প্রকার",
+                'header-3': "৩. পবিত্র যাত্রা",
+                'header-4': "🚫 ইহরামের নিষেধাজ্ঞা 🚫",
+                'back-btn': "← গাইড এ ফিরে যান"
+            }
+        };
+
+        function setLanguage(lang) {
+            // Update Text content where IDs match
+            // Note: Detailed bullet points remain in English for now to save space, 
+            // but main headers switch to show functionality.
+            if (content[lang]) {
+                document.getElementById('main-title').innerText = content[lang]['title-main'];
+                document.getElementById('subtitle').innerText = content[lang]['subtitle'];
+                document.getElementById('header-1').innerText = content[lang]['header-1'];
+                document.getElementById('header-2').innerText = content[lang]['header-2'];
+                document.getElementById('header-3').innerText = content[lang]['header-3'];
+                document.getElementById('header-4').innerText = content[lang]['header-4'];
+                document.getElementById('back-link').innerText = content[lang]['back-btn'];
+            }
+
+            // Update Buttons
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            const btn = document.getElementById(`btn-${lang}`);
+            if (btn) btn.classList.add('active');
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+
+                        // Also find highlighters inside this section and animate them
+                        const highlighters = entry.target.querySelectorAll('.highlighter, .highlighter-green, .highlighter-blue');
+                        highlighters.forEach(h => h.classList.add('is-visible'));
+
+                        observer.unobserve(entry.target); // Only animate once
+                    }
+                });
+            }, observerOptions);
+
+            const elements = document.querySelectorAll('.reveal-on-scroll');
+            elements.forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+
+</html>
