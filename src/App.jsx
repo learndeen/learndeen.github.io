@@ -1,4 +1,4 @@
-import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Home from './pages/Home';
 import HajjUmrah from './pages/HajjUmrah';
 import TopicPage from './pages/TopicPage';
@@ -14,7 +14,7 @@ const UnderConstruction = () => (
         <span className="text-6xl block mb-4">🚧</span>
         <p className="text-2xl handwritten-title">Content Under Construction</p>
         <p className="mt-2">This detailed section is currently being migrated. Please check back later!</p>
-        <a href="/" className="inline-block mt-4 text-blue-500 hover:underline">Return Home</a>
+        <Link to="/" className="inline-block mt-4 text-blue-500 hover:underline">Return Home</Link>
       </div>
     </div>
   </div>
