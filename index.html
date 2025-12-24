@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hajj Handbook - Home</title>
+    <title>Islamic Handbook - Learn Deen</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&family=Patrick+Hand&display=swap"
         rel="stylesheet">
@@ -57,14 +57,31 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            min-height: 150px;
+            min-height: 180px;
             text-decoration: none;
         }
 
         .doodle-box:hover {
-            transform: scale(1.05) rotate(-1deg);
+            transform: scale(1.05);
             box-shadow: 5px 8px 15px rgba(0, 0, 0, 0.1);
             z-index: 10;
+        }
+
+        /* Rotations for variety */
+        .rotate-1 {
+            transform: rotate(1deg);
+        }
+
+        .-rotate-1 {
+            transform: rotate(-1deg);
+        }
+
+        .rotate-2 {
+            transform: rotate(2deg);
+        }
+
+        .-rotate-2 {
+            transform: rotate(-2deg);
         }
 
         .reveal-on-scroll {
@@ -102,126 +119,157 @@
 
     <div class="fixed top-4 right-4 z-50 flex gap-2">
         <button onclick="setLanguage('en')" class="lang-btn active" id="btn-en">English</button>
-        <button onclick="setLanguage('hi')" class="lang-btn" id="btn-hi">हिन्दी</button>
-        <button onclick="setLanguage('ur')" class="lang-btn" id="btn-ur">اردو</button>
-        <button onclick="setLanguage('bn')" class="lang-btn" id="btn-bn">বাংলা</button>
+        <!-- Placeholders for other languages functionality later -->
     </div>
 
-    <div class="max-w-4xl mx-auto paper-sheet px-8 md:px-16 pb-12 min-h-[800px]">
+    <div class="max-w-6xl mx-auto paper-sheet px-8 md:px-16 pb-12 min-h-[800px]">
 
         <!-- Header -->
         <div class="mb-12 pl-6 relative pt-4 text-center reveal-on-scroll">
-            <h1 class="handwritten-title text-4xl md:text-6xl mb-4" id="main-title">Hajj Handbook</h1>
-            <p class="text-xl text-gray-600" id="sub-title">Your simple, sunnah-based guide.</p>
+            <h1 class="handwritten-title text-4xl md:text-6xl mb-4" id="main-title">Islamic Handbook</h1>
+            <p class="text-xl text-gray-600" id="sub-title">Your simple, sunnah-based guide to Deen.</p>
         </div>
 
         <!-- Topics Grid -->
-        <div class="pl-6 grid md:grid-cols-2 gap-8 reveal-on-scroll">
+        <div class="pl-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 reveal-on-scroll">
 
-            <a href="description_of_hajj.html" class="doodle-box bg-yellow-50 hover:bg-yellow-100 transform -rotate-1">
+            <!-- 1. Introduction to Islam -->
+            <a href="introduction.html" class="doodle-box bg-blue-50 hover:bg-blue-100 -rotate-1">
+                <span class="text-4xl mb-2">☪️</span>
+                <h2 class="handwritten-title text-xl font-bold">1️⃣ Introduction to Islam</h2>
+                <p class="text-sm text-gray-600 mt-2">What is Deen? Who is Allah?</p>
+            </a>
+
+            <!-- 2. Pillars of Islam -->
+            <a href="pillars.html" class="doodle-box bg-green-50 hover:bg-green-100 rotate-1">
+                <span class="text-4xl mb-2">🏛️</span>
+                <h2 class="handwritten-title text-xl font-bold">2️⃣ Pillars of Islam</h2>
+                <p class="text-sm text-gray-600 mt-2">Shahadah, Salah, Zakah...</p>
+            </a>
+
+            <!-- 3. Salah (Prayer) -->
+            <a href="salah.html" class="doodle-box bg-yellow-50 hover:bg-yellow-100 -rotate-2">
+                <span class="text-4xl mb-2">🛐</span>
+                <h2 class="handwritten-title text-xl font-bold">3️⃣ Salah (Prayer)</h2>
+                <p class="text-sm text-gray-600 mt-2">Detailed guide & Steps.</p>
+            </a>
+
+            <!-- 4. Purification (Taharah) -->
+            <a href="purification.html" class="doodle-box bg-cyan-50 hover:bg-cyan-100 rotate-2">
+                <span class="text-4xl mb-2">💧</span>
+                <h2 class="handwritten-title text-xl font-bold">4️⃣ Purification</h2>
+                <p class="text-sm text-gray-600 mt-2">Wudu, Ghusl, Tayammum.</p>
+            </a>
+
+            <!-- 5. Fasting (Sawm) -->
+            <a href="fasting.html" class="doodle-box bg-purple-50 hover:bg-purple-100 -rotate-1">
+                <span class="text-4xl mb-2">🌙</span>
+                <h2 class="handwritten-title text-xl font-bold">5️⃣ Fasting (Sawm)</h2>
+                <p class="text-sm text-gray-600 mt-2">Ramadan & Suhoor/Iftar.</p>
+            </a>
+
+            <!-- 6. Zakah & Charity -->
+            <a href="zakah.html" class="doodle-box bg-emerald-50 hover:bg-emerald-100 rotate-1">
+                <span class="text-4xl mb-2">💰</span>
+                <h2 class="handwritten-title text-xl font-bold">6️⃣ Zakah & Charity</h2>
+                <p class="text-sm text-gray-600 mt-2">Nisab, Calculation & Rights.</p>
+            </a>
+
+            <!-- 7. Hajj & Umrah (Active Link) -->
+            <a href="hajj_umrah.html" class="doodle-box bg-orange-50 hover:bg-orange-100 -rotate-2 border-orange-200">
                 <span class="text-4xl mb-2">🕋</span>
-                <h2 class="handwritten-title text-2xl" id="title-desc">Description of Hajj</h2>
-                <p class="text-sm text-gray-600 mt-2" id="desc-desc">A complete step-by-step guide from Ihram to
-                    Farewell.</p>
+                <h2 class="handwritten-title text-xl font-bold">7️⃣ Hajj & Umrah</h2>
+                <p class="text-sm text-gray-600 mt-2">Pilgrimage Guide (Active).</p>
             </a>
 
-            <a href="virtue_of_hajj.html" class="doodle-box bg-pink-50 hover:bg-pink-100 transform -rotate-1">
-                <span class="text-4xl mb-2">✨</span>
-                <h2 class="handwritten-title text-2xl" id="title-virtue">Hajj: Its Virtues and Benefits</h2>
-                <p class="text-sm text-gray-600 mt-2" id="desc-virtue">Discover the immense rewards and spiritual
-                    benefits.</p>
+            <!-- 8. Qur’an Learning -->
+            <a href="quran.html" class="doodle-box bg-teal-50 hover:bg-teal-100 rotate-2">
+                <span class="text-4xl mb-2">📖</span>
+                <h2 class="handwritten-title text-xl font-bold">8️⃣ Qur’an Learning</h2>
+                <p class="text-sm text-gray-600 mt-2">Reading, Tajweed & Tadabbur.</p>
             </a>
 
-            <a href="blessing_of_hajj.html" class="doodle-box bg-indigo-50 hover:bg-indigo-100 transform rotate-1">
+            <!-- 9. Hadith & Sunnah -->
+            <a href="hadith.html" class="doodle-box bg-gray-50 hover:bg-gray-100 -rotate-1">
+                <span class="text-4xl mb-2">📜</span>
+                <h2 class="handwritten-title text-xl font-bold">9️⃣ Hadith & Sunnah</h2>
+                <p class="text-sm text-gray-600 mt-2">Authentic Collections & Habits.</p>
+            </a>
+
+            <!-- 10. Belief (Aqidah) -->
+            <a href="belief.html" class="doodle-box bg-indigo-50 hover:bg-indigo-100 rotate-1">
+                <span class="text-4xl mb-2">🕌</span>
+                <h2 class="handwritten-title text-xl font-bold">🔟 Belief (Aqidah)</h2>
+                <p class="text-sm text-gray-600 mt-2">Six Articles of Faith.</p>
+            </a>
+
+            <!-- 11. Islamic Manners -->
+            <a href="manners.html" class="doodle-box bg-rose-50 hover:bg-rose-100 -rotate-2">
+                <span class="text-4xl mb-2">🤝</span>
+                <h2 class="handwritten-title text-xl font-bold">1️⃣1️⃣ Manners (Akhlaq)</h2>
+                <p class="text-sm text-gray-600 mt-2">Character, Truth & Kindness.</p>
+            </a>
+
+            <!-- 12. Duas & Remembrance -->
+            <a href="duas.html" class="doodle-box bg-lime-50 hover:bg-lime-100 rotate-2">
                 <span class="text-4xl mb-2">🤲</span>
-                <h2 class="handwritten-title text-2xl" id="title-blessing">Blessing of Hajj</h2>
-                <p class="text-sm text-gray-600 mt-2" id="desc-blessing">Learn about the special blessings bestowed upon
-                    pilgrims.</p>
+                <h2 class="handwritten-title text-xl font-bold">1️⃣2️⃣ Duas</h2>
+                <p class="text-sm text-gray-600 mt-2">Daily Adhkar & Supplications.</p>
             </a>
 
-            <a href="fiqh_of_hajj.html" class="doodle-box bg-green-50 hover:bg-green-100 transform rotate-1">
-                <span class="text-4xl mb-2">�</span>
-                <h2 class="handwritten-title text-2xl" id="title-fiqh">Fiqh of Hajj</h2>
-                <p class="text-sm text-gray-600 mt-2" id="desc-fiqh">Understand the rules, pillars, and obligations.</p>
+            <!-- 13. Islamic Lifestyle -->
+            <a href="lifestyle.html" class="doodle-box bg-amber-50 hover:bg-amber-100 -rotate-1">
+                <span class="text-4xl mb-2">🏡</span>
+                <h2 class="handwritten-title text-xl font-bold">1️⃣3️⃣ Lifestyle</h2>
+                <p class="text-sm text-gray-600 mt-2">Halal/Haram, Family & Work.</p>
+            </a>
+
+            <!-- 14. Women in Islam -->
+            <a href="women.html" class="doodle-box bg-fuchsia-50 hover:bg-fuchsia-100 rotate-1">
+                <span class="text-4xl mb-2">🧕</span>
+                <h2 class="handwritten-title text-xl font-bold">1️⃣4️⃣ Women in Islam</h2>
+                <p class="text-sm text-gray-600 mt-2">Rights, Modesty & Roles.</p>
+            </a>
+
+            <!-- 15. Youth & New Muslims -->
+            <a href="youth.html" class="doodle-box bg-sky-50 hover:bg-sky-100 -rotate-2">
+                <span class="text-4xl mb-2">🌱</span>
+                <h2 class="handwritten-title text-xl font-bold">1️⃣5️⃣ Youth & New Muslims</h2>
+                <p class="text-sm text-gray-600 mt-2">Basics & Answering Doubts.</p>
+            </a>
+
+            <!-- 16. Visual Learning -->
+            <a href="visuals.html" class="doodle-box bg-violet-50 hover:bg-violet-100 rotate-2">
+                <span class="text-4xl mb-2">⭐</span>
+                <h2 class="handwritten-title text-xl font-bold">1️⃣6️⃣ Visual Learning</h2>
+                <p class="text-sm text-gray-600 mt-2">Charts, Maps & Infographics.</p>
+            </a>
+
+            <!-- 17. Authentic References -->
+            <a href="references.html" class="doodle-box bg-slate-50 hover:bg-slate-100 -rotate-1">
+                <span class="text-4xl mb-2">📚</span>
+                <h2 class="handwritten-title text-xl font-bold">1️⃣7️⃣ References</h2>
+                <p class="text-sm text-gray-600 mt-2">Qur’an, Sunnah & Books.</p>
+            </a>
+
+            <!-- 18. Localization -->
+            <a href="languages.html" class="doodle-box bg-red-50 hover:bg-red-100 rotate-1">
+                <span class="text-4xl mb-2">🌍</span>
+                <h2 class="handwritten-title text-xl font-bold">1️⃣8️⃣ Languages</h2>
+                <p class="text-sm text-gray-600 mt-2">English, Hindi, Urdu...</p>
             </a>
 
         </div>
 
         <div class="mt-16 text-center text-gray-400 text-sm reveal-on-scroll">
-            <p>Select a topic above to begin.</p>
+            <p>Select a topic above to begin learning.</p>
         </div>
 
     </div>
 
     <script>
-        // Multilingual Dictionary
-        const translations = {
-            'en': {
-                'main-title': "Hajj Handbook",
-                'sub-title': "Your simple, sunnah-based guide.",
-                'title-virtue': "Hajj: Its Virtues and Benefits",
-                'desc-virtue': "Discover the immense rewards and spiritual benefits.",
-                'title-blessing': "Blessing of Hajj",
-                'desc-blessing': "Learn about the special blessings bestowed upon pilgrims.",
-                'title-fiqh': "Fiqh of Hajj",
-                'desc-fiqh': "Understand the rules, pillars, and obligations.",
-                'title-desc': "Description of Hajj",
-                'desc-desc': "A complete step-by-step guide from Ihram to Farewell."
-            },
-            'hi': {
-                'main-title': "हज हैंडबुक",
-                'sub-title': "आपका सरल, सुन्नत-आधारित गाइड।",
-                'title-virtue': "हज: इसकी फजीलत और फायदे",
-                'desc-virtue': "हज के महान पुरस्कारों और आध्यात्मिक लाभों को जानें।",
-                'title-blessing': "हज की बरकतें",
-                'desc-blessing': "हाजियों को मिलने वाली विशेष बरकतों के बारे में जानें।",
-                'title-fiqh': "हज के मसाइल (फिक़ह)",
-                'desc-fiqh': "हज के नियमों, अरकान और वाजिबात को समझें।",
-                'title-desc': "हज का तरीका",
-                'desc-desc': "एहराम से विदाई तवाफ़ तक का पूरा तरीका।"
-            },
-            'ur': {
-                'main-title': "حج ہینڈ بک",
-                'sub-title': "سنت کے مطابق آپ کا آسان گائیڈ۔",
-                'title-virtue': "حج: اس کے فضائل اور فوائد",
-                'desc-virtue': "حج کے عظیم اجر اور روحانی فوائد جانیں۔",
-                'title-blessing': "برکاتِ حج",
-                'desc-blessing': "حاجیوں پر نازل ہونے والی خاص رحمتوں کے بارے میں جانیں۔",
-                'title-fiqh': "فقہِ حج",
-                'desc-fiqh': "حج کے احکام، ارکان اور واجبات سمجھیں۔",
-                'title-desc': "طریقۂ حج",
-                'desc-desc': "احرام سے طوافِ وداع تک مکمل رہنمائی۔"
-            },
-            'bn': {
-                'main-title': "হজ হ্যান্ডবুক",
-                'sub-title': "আপনার সহজ, সুন্নাহ ভিত্তিক গাইড।",
-                'title-virtue': "হজ্জ: এর ফজিলত ও উপকারিতা",
-                'desc-virtue': "হজ্বের মহান পুরস্কার এবং আধ্যাত্মিক উপকারিতা জানুন।",
-                'title-blessing': "হজ্বের বরকত",
-                'desc-blessing': "হাজীগণের উপর বর্ষিত বিশেষ রহমত সম্পর্কে জানুন।",
-                'title-fiqh': "হজ্বের ফিকহ",
-                'desc-fiqh': "হজ্বের নিয়ম, রোকন এবং ওয়াজিব সম্পর্কে জানুন।",
-                'title-desc': "হজ্বের বিবরণ",
-                'desc-desc': "ইহরাম থেকে বিদায়ী তাওয়াফ পর্যন্ত সম্পূর্ণ গাইড।"
-            }
-        };
-
         function setLanguage(lang) {
-            // Update Text
-            const t = translations[lang];
-            if (t) {
-                for (const [id, text] of Object.entries(t)) {
-                    const el = document.getElementById(id);
-                    if (el) el.innerText = text;
-                }
-            }
-
-            // Update Buttons
-            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-            document.getElementById(`btn-${lang}`).classList.add('active');
-
-            // Save preference (optional)
-            localStorage.setItem('hajj-handbook-lang', lang);
+            console.log("Language switch to " + lang + " not yet implemented for all new topics.");
         }
 
         document.addEventListener("DOMContentLoaded", function () {
@@ -234,12 +282,6 @@
                 });
             });
             document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
-
-            // Load saved language
-            const savedLang = localStorage.getItem('hajj-handbook-lang');
-            if (savedLang && translations[savedLang]) {
-                setLanguage(savedLang);
-            }
         });
     </script>
 </body>
