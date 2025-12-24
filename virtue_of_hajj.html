@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Virtue of Hajj</title>
+    <title>Virtues & Wisdom of Hajj</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&family=Patrick+Hand&display=swap"
         rel="stylesheet">
@@ -43,6 +43,7 @@
             color: #1a202c;
         }
 
+        /* --- Animations --- */
         .reveal-on-scroll {
             opacity: 0;
             transform: translateY(30px);
@@ -54,6 +55,58 @@
             transform: translateY(0);
         }
 
+        .highlighter,
+        .highlighter-green,
+        .highlighter-blue,
+        .highlighter-pink {
+            background-repeat: no-repeat;
+            background-position: 0 88%;
+            background-size: 0% 40%;
+            transition: background-size 1s ease 0.2s;
+            padding: 0 2px;
+        }
+
+        .highlighter {
+            background-image: linear-gradient(120deg, #f6e05e 0%, #f6e05e 100%);
+        }
+
+        .highlighter-green {
+            background-image: linear-gradient(120deg, #bbf7d0 0%, #bbf7d0 100%);
+        }
+
+        .highlighter-blue {
+            background-image: linear-gradient(120deg, #bee3f8 0%, #bee3f8 100%);
+        }
+
+        .highlighter-pink {
+            background-image: linear-gradient(120deg, #fbcfe8 0%, #fbcfe8 100%);
+        }
+
+        .highlighter.is-visible,
+        .highlighter-green.is-visible,
+        .highlighter-blue.is-visible,
+        .highlighter-pink.is-visible {
+            background-size: 100% 40%;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-5px) rotate(2deg);
+            }
+
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+        }
+
+        .doodle-float {
+            animation: float 4s ease-in-out infinite;
+        }
+
         .doodle-box {
             border: 2px solid #4a5568;
             border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
@@ -61,19 +114,35 @@
             background: white;
             position: relative;
             box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.3s ease;
         }
 
         .doodle-box:hover {
-            transform: scale(1.02);
-            box-shadow: 5px 8px 15px rgba(0, 0, 0, 0.1);
+            transform: scale(1.01);
+            z-index: 5;
+        }
+
+        .tape {
+            background-color: rgba(255, 255, 255, 0.6);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(2px);
+            transform: rotate(-2deg);
+        }
+
+        .ink-stroke {
+            fill: none;
+            stroke: #2d3748;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
         }
     </style>
 </head>
 
 <body class="min-h-screen p-4 md:p-8">
 
-    <div class="max-w-4xl mx-auto paper-sheet px-8 md:px-16 pb-12 min-h-[600px]">
+    <!-- Notebook Container -->
+    <div class="max-w-4xl mx-auto paper-sheet px-8 md:px-16 pb-12 min-h-[1000px]">
 
         <!-- Header -->
         <div class="mb-8 pl-6 relative reveal-on-scroll">
@@ -81,30 +150,241 @@
                 class="inline-block mb-4 text-blue-600 hover:text-blue-800 transition-colors duration-200 doodle-box text-lg">
                 ← Back to Guide
             </a>
-            <h1 class="handwritten-title text-4xl md:text-5xl text-center mb-2 pt-4">Virtue of Hajj</h1>
+            <div
+                class="absolute -top-6 left-1/2 transform -translate-x-1/2 w-48 h-8 bg-yellow-200 opacity-80 rotate-1 tape z-10">
+            </div>
+            <h1 class="handwritten-title text-4xl md:text-5xl text-center mb-2 pt-4">Virtues & Secrets of Hajj</h1>
+            <p class="text-center text-xl text-gray-600">~ Virtues, Rulings & Spiritual Effects ~</p>
         </div>
 
-        <!-- Content -->
-        <div class="pl-6 reveal-on-scroll">
-            <p class="text-xl text-center text-gray-500 mt-12">
-                (Content to be added...)
-            </p>
+        <!-- Part 1: Prescription & Ruling -->
+        <div class="pl-6 mb-8 reveal-on-scroll">
+            <h2 class="handwritten-title text-2xl mb-4 text-blue-800 border-b border-gray-400 inline-block">1. History &
+                Ruling</h2>
+            <div class="grid md:grid-cols-2 gap-4">
+                <!-- Prescription -->
+                <div class="doodle-box bg-blue-50 transform -rotate-1">
+                    <h3 class="font-bold text-lg">📅 Prescribed: 9 AH</h3>
+                    <p class="text-sm">Year of Delegations. Revealed in <em>Surah Aal 'Imraan</em>.</p>
+                    <p class="text-sm mt-1"><em>"And Hajj... is a duty that mankind owes to Allah..."</em> [3:97]</p>
+                </div>
+                <!-- Obligation -->
+                <div class="doodle-box transform rotate-1">
+                    <h3 class="font-bold text-lg">📜 The Ruling</h3>
+                    <ul class="list-disc ml-4 text-sm space-y-1">
+                        <li><strong>Pillar of Islam:</strong> (Hadith of Ibn Umar).</li>
+                        <li><strong>Frequency:</strong> <span class="highlighter-pink">Once in a Lifetime.</span>
+                            (Hadith: "Do not push me to tell you more").</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Timing -->
+            <div class="mt-4 p-4 border-l-4 border-red-400 bg-red-50 rounded-r-lg doodle-float">
+                <h3 class="font-bold text-lg text-red-800">❗ Must be done Immediately!</h3>
+                <p class="text-sm">"Hasten to do Hajj... for none of you knows what may happen."</p>
+                <p class="text-xs text-gray-500 mt-1">(Prophet ﷺ delayed to 10AH only to purify the House first).</p>
+            </div>
+        </div>
+
+        <!-- Part 2: Virtues & Benefits -->
+        <div class="pl-6 mb-10 reveal-on-scroll">
+            <h2 class="handwritten-title text-3xl mb-6 text-green-700 border-b-2 border-green-200 inline-block">2.
+                Virtues (Fada'il)</h2>
+
+            <ul class="space-y-4">
+                <li class="flex items-start gap-3">
+                    <span class="text-2xl mt-1">🏆</span>
+                    <div>
+                        <strong class="text-lg">One of the Best Deeds</strong>
+                        <p class="text-sm">Ranked after Belief and Jihad. "An accepted Hajj."</p>
+                    </div>
+                </li>
+                <li class="flex items-start gap-3">
+                    <span class="text-2xl mt-1">👶</span>
+                    <div>
+                        <strong class="text-lg">Total Rebirth</strong>
+                        <p class="text-sm">"Come back like the day his mother gave birth to him." <span
+                                class="text-xs text-gray-500">(If no sin/disputes).</span></p>
+                    </div>
+                </li>
+                <li class="flex items-start gap-3">
+                    <span class="text-2xl mt-1">🏡</span>
+                    <div>
+                        <strong class="text-lg">Paradise & Poverty</strong>
+                        <p class="text-sm">Accepted Hajj = <span class="highlighter-green">Paradise</span>.</p>
+                        <p class="text-sm">Eliminates poverty & sins (like bellows clean iron).</p>
+                    </div>
+                </li>
+                <li class="flex items-start gap-3">
+                    <span class="text-2xl mt-1">⚔️</span>
+                    <div>
+                        <strong class="text-lg">Jihad for Women</strong>
+                        <p class="text-sm">Aisha (RA): "The best and most beautiful Jihad is Hajj."</p>
+                    </div>
+                </li>
+            </ul>
+
+            <div class="doodle-box mt-6 bg-yellow-50">
+                <h3 class="font-bold">Conditions for "Accepted Hajj" (Hajj Mabrur):</h3>
+                <ol class="list-decimal ml-5 text-sm grid grid-cols-2 gap-2 mt-2">
+                    <li>Halal Money 💰</li>
+                    <li>No Evil/Sin/Disputes 🤐</li>
+                    <li>Follow Sunnah 📜</li>
+                    <li>Sincerity (No showing off) 💖</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- Part 3: Spiritual Effects -->
+        <div class="pl-6 mb-12 reveal-on-scroll">
+            <h2 class="handwritten-title text-3xl mb-6 text-purple-800 border-b-2 border-purple-200 inline-block">3.
+                Spiritual Secrets (Hikmah)</h2>
+            <p class="mb-4 italic text-gray-600">"That they may witness things that are of benefit to them"</p>
+
+            <div class="space-y-6 border-l-2 border-dashed border-gray-400 pl-6 relative">
+
+                <!-- Journey -->
+                <div class="relative">
+                    <div
+                        class="absolute -left-9 top-0 bg-white border-2 border-gray-500 rounded-full p-1 w-6 h-6 flex items-center justify-center text-xs">
+                        ✈️</div>
+                    <h3 class="font-bold text-lg">The Journey = Journey to Hereafter</h3>
+                    <p class="text-sm">Leaving family/home reminds us of death. Preparing provision reminds us of <span
+                            class="highlighter">Taqwa</span> (the best provision).</p>
+                </div>
+
+                <!-- Ihram -->
+                <div class="relative">
+                    <div
+                        class="absolute -left-9 top-0 bg-white border-2 border-gray-500 rounded-full p-1 w-6 h-6 flex items-center justify-center text-xs">
+                        ⚪</div>
+                    <h3 class="font-bold text-lg">Ihram = The Shroud (Kafan)</h3>
+                    <p class="text-sm">Two white sheets remind us of the shroud. Just as we shed clothes, we must shed
+                        sins.</p>
+                </div>
+
+                <!-- Talbiyah -->
+                <div class="relative">
+                    <div
+                        class="absolute -left-9 top-0 bg-white border-2 border-gray-500 rounded-full p-1 w-6 h-6 flex items-center justify-center text-xs">
+                        🗣️</div>
+                    <h3 class="font-bold text-lg">Talbiyah = The Response</h3>
+                    <p class="text-sm">"Labbayk" means "I am responding to Your prohibition of sin." Training the self
+                        to give up even Halal things (during Ihram) so we can give up Haram things later.</p>
+                </div>
+
+                <!-- Sanctuary -->
+                <div class="relative">
+                    <div
+                        class="absolute -left-9 top-0 bg-white border-2 border-gray-500 rounded-full p-1 w-6 h-6 flex items-center justify-center text-xs">
+                        🕌</div>
+                    <h3 class="font-bold text-lg">Sanctuary = Day of Resurrection Safety</h3>
+                    <p class="text-sm">Entering the safe sanctuary reminds us that safety on Judgment Day comes only
+                        from Tawheed.</p>
+                </div>
+
+                <!-- Black Stone -->
+                <div class="relative">
+                    <div
+                        class="absolute -left-9 top-0 bg-white border-2 border-gray-500 rounded-full p-1 w-6 h-6 flex items-center justify-center text-xs">
+                        ⬛</div>
+                    <h3 class="font-bold text-lg">Black Stone = Submission</h3>
+                    <p class="text-sm">We kiss a stone only because the Prophet ﷺ did. It teaches us to honor Sunnah
+                        over "feeble reasoning."</p>
+                </div>
+
+                <!-- Sa'y -->
+                <div class="relative">
+                    <div
+                        class="absolute -left-9 top-0 bg-white border-2 border-gray-500 rounded-full p-1 w-6 h-6 flex items-center justify-center text-xs">
+                        🏃</div>
+                    <h3 class="font-bold text-lg">Sa'y = Patience (Haajar AS)</h3>
+                    <p class="text-sm">Reminds us of Haajar's struggle. Turning to Allah in adversity brings relief
+                        (Zamzam).</p>
+                </div>
+
+                <!-- Arafah -->
+                <div class="relative">
+                    <div
+                        class="absolute -left-9 top-0 bg-white border-2 border-gray-500 rounded-full p-1 w-6 h-6 flex items-center justify-center text-xs">
+                        ☀️</div>
+                    <h3 class="font-bold text-lg">Arafah = The Gathering (Hashr)</h3>
+                    <p class="text-sm">Crowds standing in dust and heat remind us of standing before Allah for 50,000
+                        years.</p>
+                </div>
+
+                <!-- Jamarat -->
+                <div class="relative">
+                    <div
+                        class="absolute -left-9 top-0 bg-white border-2 border-gray-500 rounded-full p-1 w-6 h-6 flex items-center justify-center text-xs">
+                        🪨</div>
+                    <h3 class="font-bold text-lg">Jamarat = Unquestioning Obedience</h3>
+                    <p class="text-sm">Throwing pebbles is pure submission ('Uboodiyyah), even if we don't understand
+                        the logic.</p>
+                </div>
+
+                <!-- Sacrifice -->
+                <div class="relative">
+                    <div
+                        class="absolute -left-9 top-0 bg-white border-2 border-gray-500 rounded-full p-1 w-6 h-6 flex items-center justify-center text-xs">
+                        🐑</div>
+                    <h3 class="font-bold text-lg">Sacrifice = Killing Desires</h3>
+                    <p class="text-sm">Like Ibrahim (AS) sacrificed his emotions to obey Allah's command regarding
+                        Ismail (AS).</p>
+                </div>
+
+                <!-- Return -->
+                <div class="relative">
+                    <div
+                        class="absolute -left-9 top-0 bg-white border-2 border-gray-500 rounded-full p-1 w-6 h-6 flex items-center justify-center text-xs">
+                        🏠</div>
+                    <h3 class="font-bold text-lg">Returning Home = Final Joy/Loss</h3>
+                    <p class="text-sm">Joy of meeting family reminds us of meeting them in Paradise. Losing them reminds
+                        us of the "Manifest Loss" (39:15).</p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="mt-12 text-center text-gray-500 pl-6 pb-8 reveal-on-scroll">
+            <p class="handwritten-title text-xl">"Guests of Allah... He called them and they responded."</p>
+            <div class="flex justify-center mt-4 doodle-float">
+                <svg width="50" height="50" viewBox="0 0 100 100" class="ink-stroke">
+                    <path d="M50,20 Q80,20 80,50 Q80,80 50,80 Q20,80 20,50 Q20,20 50,20 Z" />
+                    <path d="M50,30 L50,70 M30,50 L70,50" />
+                </svg>
+            </div>
         </div>
 
     </div>
 
+    <!-- Script to trigger animations -->
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            const observer = new IntersectionObserver((entries) => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('is-visible');
+                        const highlighters = entry.target.querySelectorAll('.highlighter, .highlighter-green, .highlighter-blue, .highlighter-pink');
+                        highlighters.forEach(h => h.classList.add('is-visible'));
+                        observer.unobserve(entry.target);
                     }
                 });
-            });
-            document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
+            }, observerOptions);
+
+            const elements = document.querySelectorAll('.reveal-on-scroll');
+            elements.forEach(el => observer.observe(el));
         });
     </script>
+
 </body>
 
 </html>
