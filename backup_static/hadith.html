@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hadith & Sunnah - Islamic Handbook</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&family=Patrick+Hand&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            background-color: #f0f4f8;
+            font-family: 'Patrick Hand', cursive;
+            color: #2d3748;
+            overflow-x: hidden;
+        }
+
+        .paper-sheet {
+            background-color: #fff;
+            background-image: linear-gradient(#e1e1e1 1px, transparent 1px);
+            background-size: 100% 1.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            position: relative;
+            line-height: 1.5rem;
+            padding-top: 3rem;
+            background-blend-mode: multiply;
+        }
+
+        .paper-sheet::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 3rem;
+            width: 2px;
+            background-color: #fca5a5;
+            z-index: 10;
+        }
+
+        .handwritten-title {
+            font-family: 'Gloria Hallelujah', cursive;
+            color: #1a202c;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 1rem;
+            color: #4a5568;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .back-link:hover {
+            color: #2b6cb0;
+        }
+        
+        .placeholder-box {
+            border: 2px dashed #cbd5e0;
+            border-radius: 12px;
+            padding: 3rem;
+            text-align: center;
+            color: #a0aec0;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen p-4 md:p-8">
+
+    <div class="max-w-4xl mx-auto paper-sheet px-8 md:px-16 pb-12 min-h-[800px]">
+
+        <!-- Header -->
+        <div class="mb-12 pl-6 relative pt-4 text-center">
+            <a href="index.html" class="back-link">← Back to Home</a>
+            <h1 class="handwritten-title text-4xl md:text-6xl mb-4">9️⃣ Hadith & Sunnah</h1>
+            <p class="text-xl text-gray-600">Sub-topics and details coming soon.</p>
+        </div>
+
+        <!-- Content Placeholder -->
+        <div class="pl-6">
+            <div class="placeholder-box">
+                <span class="text-6xl block mb-4">🚧</span>
+                <p class="text-2xl handwritten-title">Content Under Construction</p>
+                <p class="mt-2">This section is currently being written. Please check back later!</p>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
