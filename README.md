@@ -1,16 +1,90 @@
-# React + Vite
+# Islamic Handbook (Learn Deen)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A beautiful, interactive, and responsive web application designed to be your simple, Sunnah-based guide to Islam. Built with modern web technologies, it features a handwritten "paper" aesthetic to make learning feel personal and engaging.
 
-Currently, two official plugins are available:
+![Project Preview](https://via.placeholder.com/800x400?text=Islamic+Handbook+Preview)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🌟 Features
 
-## React Compiler
+- **18 Comprehensive Topics**: Covering everything from the Pillars of Islam to Daily Duas and Hajj.
+- **Dynamic Themes**: 
+  - ☀️ **Light Mode**: Clean, day-time reading.
+  - 🌙 **Dark Mode**: Premium slate aesthetic for night reading.
+  - 📜 **Sepia Mode**: Warm, old-book feel for comfort.
+- **Responsive Design**: Fluid layouts that look great on Mobiles, Tablets, and Desktops (up to 4K).
+- **Interactive Elements**: "Doodle" cards with smooth hover animations.
+- **Fast Performance**: Built as a Single Page Application (SPA) for instant navigation.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🛠 Tech Stack
 
-## Expanding the ESLint configuration
+- **Framework**: [React](https://react.dev/)
+- **Build Tool**: [Vite](https://vitejs.dev/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **Routing**: [React Router](https://reactrouter.com/)
+- **Deployment**: GitHub Pages (via GitHub Actions)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js (v18 or higher recommended)
+- npm or yarn
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/learndeen/learndeen.github.io.git
+   cd learndeen.github.io
+   ```
+
+2. **Install Dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Run Development Server**
+   ```bash
+   npm run dev
+   ```
+   Open [http://localhost:5173](http://localhost:5173) in your browser.
+
+## 📦 Building for Production
+
+To create a production-ready build:
+
+```bash
+npm run build
+```
+
+The output will be in the `dist/` directory.
+
+## 🌍 Deployment
+
+This project is configured to **automatically deploy** to GitHub Pages using GitHub Actions.
+
+1. Push changes to the `main` or `dev_rameez24Dec25responsive` branch.
+2. The Action will automatically build and deploy the app.
+3. Your site will be live at: `https://[username].github.io/learndeen.github.io/`
+
+## 📁 Project Structure
+
+```
+/src
+  /assets        # Static assets (images, fonts)
+  /components    # Reusable UI components (ThemeSwitcher, ScrollToTop)
+  /context       # React Context (ThemeProvider)
+  /data          # Static data (Topics list)
+  /pages         # Page components (Home, HajjUmrah, TopicPage)
+  App.jsx        # Main App component & Routes
+  index.css      # Global styles & Tailwind imports
+  main.jsx       # Entry point
+```
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+---
+
+*Verified content based on Qur'an and Sunnah.*
